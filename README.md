@@ -1,4 +1,4 @@
-# Drop Boys
+# Drop Bear
 What if it was the 80s and you wanted to make a game boy game? 
 This project is a sample of how to make your own game boy games for yourself.
 
