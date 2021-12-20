@@ -1,0 +1,29 @@
+
+
+#include "../include/text.h"
+
+const unsigned char hud_tile_map[] = {
+    CHARACTER_SPACE,
+    CHARACTER_T,
+    CHARACTER_I,
+    CHARACTER_M,
+    CHARACTER_E,
+
+    CHARACTER_COLON,
+    CHARACTER_ZERO,
+    CHARACTER_ZERO,
+    CHARACTER_ZERO,
+    CHARACTER_SPACE,
+
+    CHARACTER_S,
+    CHARACTER_C,
+    CHARACTER_O,
+    CHARACTER_R,
+    CHARACTER_E,
+
+    CHARACTER_COLON,
+    CHARACTER_ZERO,
+    CHARACTER_ZERO,
+    CHARACTER_ZERO,
+    CHARACTER_SPACE,
+};
