@@ -189,4 +189,12 @@ void main()
 
     // Load tile map into memory.
     set_bkg_tiles(0, 0, BACKGROUND_TILE_MAP_WIDTH, BACKGROUND_TILE_MAP_HEIGHT, background_tile_map);
+
+    // scroll the background forever
+    while(1)
+    {
+      scroll_bkg(0, 3);
+      // Wait until VBLANK to avoid corrupting memory and keep time
+      wait_vbl_done();
+    }
 }
