@@ -1,5 +1,5 @@
 #include <gb/gb.h>
-#include <gb/console.h>
+#include <gbdk/console.h>
 #include <stdio.h>
 
 
@@ -97,4 +97,8 @@ void main()
     // move the text cursor to a lower row and print
     gotoxy(0, 15);
     printf("   PRESS  START    ");
+
+    waitpadup();
+    waitpad(J_START);
+    cls();
 }
