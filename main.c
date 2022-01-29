@@ -1,6 +1,7 @@
 #include <gb/gb.h>
 #include <gbdk/console.h>
 #include <stdio.h>
+#include <rand.h>
 
 
 #define LOGO_TILE_MAP_SIZE 0x39
@@ -208,6 +209,7 @@ UINT8 coin_b_x = 32;
 UINT8 coin_b_y = 0;
 UINT8 coin_c_x = 64;
 UINT8 coin_c_y = 0;
+UINT16 score = 0;
 
 void main()
 {
@@ -240,6 +242,9 @@ void main()
 
     // set game timer
     game_time = 60 * 10;
+
+    // reset score
+    score = 0;
 
     // Load tileset into background memory
     set_bkg_data(128, BACKGROUND_TILE_SET_COUNT, background_tile_set);
@@ -294,6 +299,24 @@ void main()
       move_sprite(BEAR_TILE_MAP_SIZE + 0, coin_a_x, coin_a_y);
       move_sprite(BEAR_TILE_MAP_SIZE + 1, coin_b_x, coin_b_y);
       move_sprite(BEAR_TILE_MAP_SIZE + 2, coin_c_x, coin_c_y);
+
+      if(coin_a_y < player_y + 32 && coin_a_x > player_x && coin_a_x < player_x + 32)
+      {
+        coin_a_y = 0;
+        score++;
+      }
+
+      if(coin_b_y < player_y + 32 && coin_b_x > player_x && coin_b_x < player_x + 32)
+      {
+        coin_b_y = 0;
+        score++;
+      }
+
+      if(coin_c_y < player_y + 32 && coin_c_x > player_x && coin_c_x < player_x + 32)
+      {
+        coin_c_y = 0;
+        score++;
+      }
 
       // update input
       // LEFT
