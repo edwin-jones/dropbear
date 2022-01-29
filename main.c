@@ -247,15 +247,18 @@ void main()
     // Load tile map into memory.
     set_bkg_tiles(0, 0, BACKGROUND_TILE_MAP_WIDTH, BACKGROUND_TILE_MAP_HEIGHT, background_tile_map);
 
-    // Load the the 'sprites' tiles into sprite memory
+    // Load the the bear 'sprites' tiles into sprite memory
     set_sprite_data(0, BEAR_TILE_SET_COUNT, bear_tile_set);
-    set_sprite_data(BEAR_TILE_SET_COUNT, 1, coins_tile_set);
+   
 
     // Set the bear sprite to the correct sprite tiles.
     for (UINT8 i = 0; i < BEAR_TILE_MAP_SIZE; i++)
     {
         set_sprite_tile(i, bear_tile_map[i]);
     }
+
+    // Load the the coin 'sprites' tile into sprite memory
+    set_sprite_data(BEAR_TILE_SET_COUNT, 1, coins_tile_set);
 
     // set the coin sprites to load in memory after the bear sprite.
     for (UINT8 i = 0; i < 3; i++)
@@ -285,9 +288,9 @@ void main()
       }
 
       // move coins
-      coin_a_y -= 1;
-      coin_b_y -= 1;
-      coin_c_y -= 1;
+      coin_a_y -= 2;
+      coin_b_y -= 2;
+      coin_c_y -= 2;
       move_sprite(BEAR_TILE_MAP_SIZE + 0, coin_a_x, coin_a_y);
       move_sprite(BEAR_TILE_MAP_SIZE + 1, coin_b_x, coin_b_y);
       move_sprite(BEAR_TILE_MAP_SIZE + 2, coin_c_x, coin_c_y);
