@@ -57,3 +57,7 @@ dkms.conf
 *.sav
 .vscode/
 bin/
+*.ihx
+*.asm
+*.lst
+*.sym
