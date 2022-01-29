@@ -185,9 +185,29 @@ const unsigned char bear_tile_set[] ={
   0x00,0xFF,0x00,0xFF,0x00,0xF0,0x00,0xF0,0x00,0xC0,0x00,0xC0,0x00,0xC0,0x00,0xC0
 };
 
+unsigned char coins_tile_map[] =
+{
+  129,
+};
+
+/* Start of tile array. */
+unsigned char coins_tile_set[] =
+{
+  0x00,0x7E,0x24,0xFF,0x28,0xFF,0x30,0xFF,
+  0x30,0xFF,0x28,0xFF,0x24,0xFF,0x00,0x7E,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+};
+
 UINT16 game_time = 600;
 UINT8 player_x = 72;
 UINT8 player_y = 32;
+UINT8 coin_a_x = 16;
+UINT8 coin_a_y = 0;
+UINT8 coin_b_x = 32;
+UINT8 coin_b_y = 0;
+UINT8 coin_c_x = 64;
+UINT8 coin_c_y = 0;
 
 void main()
 {
@@ -229,11 +249,18 @@ void main()
 
     // Load the the 'sprites' tiles into sprite memory
     set_sprite_data(0, BEAR_TILE_SET_COUNT, bear_tile_set);
+    set_sprite_data(BEAR_TILE_SET_COUNT, 1, coins_tile_set);
 
-    // Set the first movable sprite (0) to be the first tile in the sprite memory (0)
+    // Set the bear sprite to the correct sprite tiles.
     for (UINT8 i = 0; i < BEAR_TILE_MAP_SIZE; i++)
     {
         set_sprite_tile(i, bear_tile_map[i]);
+    }
+
+    // set the coin sprites to load in memory after the bear sprite.
+    for (UINT8 i = 0; i < 3; i++)
+    {
+        set_sprite_tile(i + BEAR_TILE_MAP_SIZE, 0x0E);
     }
 
     SHOW_SPRITES;
@@ -256,6 +283,14 @@ void main()
               move_sprite(tileCounter++, player_x + xOffset, player_y + yOffset);
           }
       }
+
+      // move coins
+      coin_a_y -= 1;
+      coin_b_y -= 1;
+      coin_c_y -= 1;
+      move_sprite(BEAR_TILE_MAP_SIZE + 0, coin_a_x, coin_a_y);
+      move_sprite(BEAR_TILE_MAP_SIZE + 1, coin_b_x, coin_b_y);
+      move_sprite(BEAR_TILE_MAP_SIZE + 2, coin_c_x, coin_c_y);
 
       // update input
       // LEFT
