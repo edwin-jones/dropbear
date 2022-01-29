@@ -61,3 +61,4 @@ bin/
 *.asm
 *.lst
 *.sym
+*.README.md
