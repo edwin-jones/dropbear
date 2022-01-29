@@ -186,6 +186,8 @@ const unsigned char bear_tile_set[] ={
 };
 
 UINT16 game_time = 600;
+UINT8 player_x = 72;
+UINT8 player_y = 32;
 
 void main()
 {
@@ -216,18 +218,57 @@ void main()
     waitpad(J_START);
     cls();
 
+    // set game timer
+    game_time = 60 * 10;
+
     // Load tileset into background memory
     set_bkg_data(128, BACKGROUND_TILE_SET_COUNT, background_tile_set);
 
     // Load tile map into memory.
     set_bkg_tiles(0, 0, BACKGROUND_TILE_MAP_WIDTH, BACKGROUND_TILE_MAP_HEIGHT, background_tile_map);
 
-    // set game timer
-    game_time = 60 * 10;
+    // Load the the 'sprites' tiles into sprite memory
+    set_sprite_data(0, BEAR_TILE_SET_COUNT, bear_tile_set);
+
+    // Set the first movable sprite (0) to be the first tile in the sprite memory (0)
+    for (UINT8 i = 0; i < BEAR_TILE_MAP_SIZE; i++)
+    {
+        set_sprite_tile(i, bear_tile_map[i]);
+    }
+
+    SHOW_SPRITES;
+
     while(game_time)
     {
        // scroll the background
       scroll_bkg(0, 3);
+
+      UINT8 tileCounter = 0;
+
+      // move player
+      for (UINT8 y = 0; y < BEAR_TILE_MAP_WIDTH; y++)
+      {
+          UINT8 yOffset = y * 8;
+
+          for (UINT8 x = 0; x < BEAR_TILE_MAP_HEIGHT; x++)
+          {
+              UINT8 xOffset = x * 8;
+              move_sprite(tileCounter++, player_x + xOffset, player_y + yOffset);
+          }
+      }
+
+      // update input
+      // LEFT
+      if (joypad() & J_LEFT)
+      {
+          player_x -= 2;
+      }
+
+      // RIGHT
+      if (joypad() & J_RIGHT)
+      {
+          player_x += 2;
+      }
 
       //decrement the game timer
       game_time--;
