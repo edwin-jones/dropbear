@@ -338,6 +338,17 @@ void main()
       wait_vbl_done();
     }
 
+    HIDE_SPRITES;
+    cls();
+    move_bkg(0, 0);
+    gotoxy(0, 5);
+    printf("     HI SCORE: %u ", score);
+    gotoxy(0, 9);
+    printf("    PRESS  START    ");
+
+    waitpadup();
+    waitpad(J_START);
+
      //jump back to the start of the program
     goto start;
 }
