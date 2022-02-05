@@ -248,8 +248,8 @@ void main()
     waitpad(J_START);
     cls();
 
-    // init randomisation based on current value of the timer register
-    initarand(TIME_REG);
+    // init randomisation based on current value of the DIV register
+    initarand(DIV_REG);
 
     // set game timer
     game_time = 60 * 10;
