@@ -200,6 +200,14 @@ unsigned char coins_tile_set[] =
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
 
+UINT8 get_random_coin_x_position()
+{
+    static UINT8 random;
+    random = (UINT8)rand();
+
+    return (random % 152) + 8;
+}
+
 UINT16 game_time = 600;
 UINT8 player_x = 72;
 UINT8 player_y = 32;
@@ -239,6 +247,9 @@ void main()
     waitpadup();
     waitpad(J_START);
     cls();
+
+    // init randomisation based on current value of the timer register
+    initarand(TIME_REG);
 
     // set game timer
     game_time = 60 * 10;
@@ -303,18 +314,21 @@ void main()
       if(coin_a_y < player_y + 32 && coin_a_x > player_x && coin_a_x < player_x + 32)
       {
         coin_a_y = 0;
+        coin_a_x = get_random_coin_x_position();
         score++;
       }
 
       if(coin_b_y < player_y + 32 && coin_b_x > player_x && coin_b_x < player_x + 32)
       {
         coin_b_y = 0;
+        coin_b_x = get_random_coin_x_position();
         score++;
       }
 
       if(coin_c_y < player_y + 32 && coin_c_x > player_x && coin_c_x < player_x + 32)
       {
         coin_c_y = 0;
+        coin_c_x = get_random_coin_x_position();
         score++;
       }
 
