@@ -27,7 +27,7 @@ There aren't any hard and fast rules here but it's probably best to be idiomatic
 * For function names, `snake_case` is preferred. 
 * Use `ALL_CAPS` for macros.
 * Use GBDK types for variables such as `UINT8` instead of int etc.
-* Use normal c types in data files to avoid needed to import GBDK headers. `UINT8` would be just `unsigned char` etc.
+* Use normal c types in data files to avoid needing to import GBDK headers. `UINT8` would be just `unsigned char` etc.
 * Use macros over consts where you can, again for consistency with the library.
 * Use Allman style braces. (This is a divergence from the GBDK style)
 
